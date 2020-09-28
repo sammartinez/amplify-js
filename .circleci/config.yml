@@ -313,6 +313,7 @@ jobs:
             mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             echo $SSH_HOST_PUBLIC_KEY >> ~/.ssh/known_hosts
             git clone $AMPLIFY_JS_SAMPLES_STAGING_URL
+            git checkout integ-prod-test/main
             cd amplify-js-samples-staging
             yarn
       - save_cache:
@@ -644,6 +645,15 @@ jobs:
             git push origin release
             git push origin release:main
 
+testable_branches: &testable_branches
+  branches:
+    only:
+      - release
+      - main
+      - ui-components/main
+      - 1.0-stable
+      - integ-prod-test/testing
+
 releasable_branches: &releasable_branches
   branches:
     only:
@@ -678,7 +688,7 @@ workflows:
       - build
       - integ_setup:
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
       - unit_test:
           requires:
             - build
@@ -687,7 +697,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -696,7 +706,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -705,7 +715,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -714,7 +724,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -723,7 +733,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -732,7 +742,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -741,7 +751,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -750,7 +760,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -759,7 +769,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -768,13 +778,13 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
       - integ_amazon_cognito_identity_js:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -783,25 +793,25 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
       - integ_rn_ios_push_notifications:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
       - integ_rn_android_storage:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
       - integ_datastore_auth:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *testable_branches
           matrix:
             parameters:
               <<: *datastore_auth_scenarios
