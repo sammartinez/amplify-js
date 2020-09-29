@@ -798,19 +798,19 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *testable_branches
+            <<: *releasable_branches
       - integ_rn_ios_push_notifications:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *testable_branches
+            <<: *releasable_branches
       - integ_rn_android_storage:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *testable_branches
+            <<: *releasable_branches
       - integ_datastore_auth:
           requires:
             - integ_setup
