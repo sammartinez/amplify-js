@@ -17,7 +17,8 @@
   </a>
 </p>
 
-## Reporting Bugs/Feature Requests
+### Reporting Bugs/Feature Requests
+
 [![Open Bugs](https://img.shields.io/github/issues/aws-amplify/amplify-js/bug?color=d73a4a&label=bugs)](https://github.com/aws-amplify/amplify-js/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
 [![Feature Requests](https://img.shields.io/github/issues/aws-amplify/amplify-js/feature-request?color=ff9001&label=feature%20requests)](https://github.com/aws-amplify/amplify-js/issues?q=is%3Aissue+label%3Afeature-request+is%3Aopen)
 [![Closed Issues](https://img.shields.io/github/issues-closed/aws-amplify/amplify-js?color=%2325CC00&label=issues%20closed)](https://github.com/aws-amplify/amplify-js/issues?q=is%3Aissue+is%3Aclosed+)
@@ -207,8 +208,8 @@ Auth.signUp({
 });
 
 Auth.signIn(username, password)
-	.then(success => console.log('successful sign in'))
-	.catch(err => console.log(err));
+	.then((success) => console.log('successful sign in'))
+	.catch((err) => console.log(err));
 ```
 
 See our [Authentication Developer Guide](https://docs.amplify.aws/lib/auth/getting-started/q/platform/js) for detailed information.
@@ -360,7 +361,7 @@ const SubscribeToEventComments = `subscription subscribeToComments {
 const subscription = API.graphql(
 	graphqlOperation(SubscribeToEventComments)
 ).subscribe({
-	next: eventData => console.log(eventData),
+	next: (eventData) => console.log(eventData),
 });
 ```
 
@@ -372,16 +373,16 @@ AWS Amplify provides an easy-to-use API to store and get content from public or 
 
 ```js
 Storage.put(key, fileObj, { level: 'private' })
-	.then(result => console.log(result))
-	.catch(err => console.log(err));
+	.then((result) => console.log(result))
+	.catch((err) => console.log(err));
 
 // Store data with specifying its MIME type
 Storage.put(key, fileObj, {
 	level: 'private',
 	contentType: 'text/plain',
 })
-	.then(result => console.log(result))
-	.catch(err => console.log(err));
+	.then((result) => console.log(result))
+	.catch((err) => console.log(err));
 ```
 
 See our [Storage Developer Guide](https://docs.amplify.aws/lib/storage/getting-started/q/platform/js) for detailed information.
